@@ -12,6 +12,7 @@
   "dependencies": {
     "@netlify/functions": "^0.10.0",
     "@plasmicapp/loader-react": "^1.0.102",
+    "@plasmicapp/react-web": "^0.2.95",
     "@remix-run/netlify": "^1.4.1",
     "@remix-run/node": "^1.4.1",
     "@remix-run/react": "^1.4.1",
