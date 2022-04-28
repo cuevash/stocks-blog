@@ -1,4 +1,4 @@
-// This page will show up at the route /mypage
+// This page will show up at generic /page
 
 import {
   PlasmicRootProvider,
