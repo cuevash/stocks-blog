@@ -9,18 +9,21 @@ import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 
 // Fetch the data needed to render Plasmic pages or components, server-side.
-export const loader = async () => {
+export const loader = async ({ params }) => {
+  const page = params["*"];
   // You can pass in multiple page paths or component names.
-  const plasmicData = await PLASMIC.fetchComponentData("/features");
-  return json(plasmicData);
+  const plasmicData = await PLASMIC.fetchComponentData(`/${page}`);
+  return json(plasmicData)
+    .json()
+    .then((result) => ({ renderData: result, page }));
 };
 
 // Render the page or component from Plasmic.
 export default function MyPage() {
-  const plasmicData = useLoaderData();
+  const { renderData: plasmicData, page } = useLoaderData();
   return (
     <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
-      <PlasmicComponent component="/features" />
+      <PlasmicComponent component={`/${page}`} />
     </PlasmicRootProvider>
   );
 }
